@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#006747">
+    <title>Biz360 - Business Simplified</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <!--Navigation Bar--> 
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                Biz360
+            </div>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- --- Banner Section --- -->
+    <header class="banner">
+        <div class="banner-content">
+            <h1>Simplify Your Business. Reclaim Your Time.</h1>
+            <p>Your tool for sales record keeping.</p>
+            <a href="#main-dashboard" class="cta-button">
+                <i class="fas fa-rocket"></i> Get Started
+            </a>
+        </div>
+    </header>
+
+    <!-- --- Main Section --- -->
+    <main class="main-content" id="main-dashboard">
+        <!--Tabs-->
+ <div class="tabs">
+             <button class="tab-button active" onclick="showTab('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</button>
+             <button class="tab-button" onclick="showTab('sales')"><i class="fas fa-cash-register"></i> Sales Register</button>
+             <button class="tab-button" onclick="showTab('tax')"><i class="fas fa-receipt"></i> Tax Helper</button>
+           
+             <!--dashboard tab-->
+            <div id="dashboard" class="tab-content active">
+            <div class="section-header"><i class="fas fa-chart-pie"></i><h2>Business Dashboard</h2></div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card"><div class="icon"><i class="fas fa-cash-register"></i></div><div class="info"><h3 id="weekly-sales">TSh 0</h3><p>Sales This Week</p></div></div>
+                <div class="dashboard-card"><div class="icon"><i class="fas fa-calendar-alt"></i></div><div class="info"><h3 id="monthly-sales">TSh 0</h3><p>Sales This Month</p></div></div>
+                <div class="dashboard-card"><div class="icon"><i class="fas fa-trophy"></i></div><div class="info"><h3 id="top-product">-</h3><p>Top Selling Product</p></div></div>
+            </div>
+
+          <!-- Sales by Time Chart -->
+        <div class="chart-container">
+            <h3>Sales Over Time (TSh)</h3>
+            <canvas id="salesOverTimeChart"></canvas>
+        </div>
+
+        <!-- Sales by Product Chart -->
+        <div class="chart-container">
+            <h3>Top Selling Products (by Quantity)</h3>
+            <canvas id="salesByProductChart"></canvas>
+        </div>
+    </div>
+            
+             <!--sales tab-->
+             <div id="sales" class="tab-content">
+            <div class="section-header"><i class="fas fa-cash-register"></i><h2>Daily Sales Register</h2></div>
+            <form id="sales-form">
+                <div class="form-grid">
+                    <div class="form-group"><label for="sale-id">Sale ID</label><input id="sale-id" type="text" name="data[sale_id]" placeholder="Auto-generated"></div>
+                    <div class="form-group"><label for="sale-prod">Product</label><input id="sale-prod" type="text" name="data[product]" required placeholder="e.g Cooking Oil"></div>
+                    <div class="form-group"><label for="sale-qty">Quantity</label><input id="sale-qty" type="number" name="data[quantity]" required value="1"></div>
+                    <div class="form-group"><label for="sale-price">Unit Price (TSh)</label><input id="sale-price" type="number" name="data[unit_price]" step="1" required placeholder="e.g 8000"></div>
+                    <div class="form-group"><label for="sale-method">Payment Method</label><select id="sale-method" name="data[payment_method]" required><option value="cash">Cash</option><option value="mobile_money">Mobile Money</option></select></div>
+                </div>
+                <div id="sale-calculation" class="hidden">
+                    <h4>Sale Summary</h4>
+                    <p>Subtotal: <strong>TSh <span id="subtotal">0</span></strong></p>
+                    <p>VAT (18%): <strong>+ TSh <span id="vat">0</span></strong></p>
+                    <hr style="border: 1px solid #ddd; margin: 10px 0;">
+                    <p style="font-size:1.2rem;">Final Total: <strong>TSh <span id="final-total">0</span></strong></p>
+                </div>
+                <button type="submit" class="btn"><i class="fas fa-plus"></i> Record Sale</button>
+            </form>
+            <div class="table-container"><table class="data-table" id="sales-table"></table></div>
+        </div>
+
+             <!--tax-->
+<div id="tax" class="tab-content">
+    <div class="section-header"><i class="fas fa-receipt"></i><h2>Digital Tax Helper</h2>
+    </div>
+
+    <div id="vat-reminder" class="tax-reminder hidden">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+            <h3>VAT Payment Reminder</h3>
+            <p>The deadline to file and pay your VAT is approaching! Please ensure you submit on time to avoid penalties.</p>
+        </div>
+    </div>
+
+    <div class="info-section" style="box-shadow:none; padding:1.5rem; background-color: var(--light-gray);">
+        <h3 style="margin-bottom: 1rem; color: var(--primary-green);">Your Tax Resources</h3>
+        <p style="margin-bottom: 1.5rem;">Use the official TRA portal to manage and pay your taxes online. All sales recorded in Biz360 automatically include 18% VAT to simplify your calculations.</p>
+        <a href="https://taxpayerportal.tra.go.tz/" target="_blank" class="btn">
+            <i class="fas fa-balance-scale"></i> Go to TRA Tax Payer Portal
+        </a>
+    </div>
+</div>
+
+</div>
+    </main>
+
+    <!-- --- Footer --- -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Biz360</h3>
+                <p>Simplify your business.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+            <p>Follow our journey and get business tips on our social media channels.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/jacqueline-kivuyo-235815273" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/kivuyo.ms=" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/255689311830?text=Hello!%20I%20have%20an%20inquiry%20about%20Kivuyo360" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            </div>
+            <div class="footer-column">
+            <p>© 2025 Biz360. All Rights Reserved. Built by Jacqueline Kivuyo.</p>
+            </div>
+            </footer>
+
+    <!--my sripts -->
+    <script src="script.js"></script>
+    <script src="charts.js" defer></script>
+    <script>
+        $(document).ready(function() {
+            // scrolling
+            $('.nav-links a, .cta-button').on('click', function(e) {
+                e.preventDefault();
+                var target = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top
+                }, 800);
+            });
+
+            // toggle
+            $('.hamburger').on('click', function() {
+                $('.tabs').toggleClass('mobile-visible');
+            });
+        });
+    </script>
+</body>
+</html>
