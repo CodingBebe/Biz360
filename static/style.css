@@ -67,7 +67,7 @@
     background-position: center;
     background-attachment: fixed;
     color: var(--white);
-    padding: 140px 2rem 80px;
+    padding: 100px 2rem 80px; /* Reduced top padding from 140px to 100px */
     text-align: center;
     min-height: 100vh;
     display: flex;
@@ -153,6 +153,7 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 4rem 2rem;
+            margin-top: 90px; /* Add this line to push content below navbar */
         }
 
         .tabs {
@@ -1101,73 +1102,132 @@
     font-weight: 500;
 }
 
-/* Responsive Design */
+/* --- Sales Register Form --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--primary-green);
+    margin-bottom: 0.25rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.7rem 1rem;
+    border: 1.5px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--white);
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-green);
+    outline: none;
+}
+
+button.btn {
+    background: var(--primary-green);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,103,71,0.08);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+button.btn:hover {
+    background: #008f5a;
+    box-shadow: 0 4px 16px rgba(0,103,71,0.13);
+}
+
+.table-container {
+    margin-top: 2rem;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.data-table th, .data-table td {
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.data-table th {
+    background: var(--primary-green);
+    color: var(--white);
+    font-weight: 700;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Chart Containers --- */
+.chart-container {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.chart-container h3 {
+    color: var(--primary-green);
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.chart-container canvas {
+    max-width: 100%;
+    height: 320px !important;
+    background: var(--light-gray);
+    border-radius: 10px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Responsive tweaks for form and charts */
 @media (max-width: 768px) {
-    .contact-content {
-        padding: 2rem 0;
-    }
-    
-    .contact-methods {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .contact-method {
-        padding: 1.5rem;
-    }
-    
-    .contact-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .contact-btn, .whatsapp-button {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-    
-    .contact-info {
+    .form-grid {
         grid-template-columns: 1fr;
     }
-}
-
-/* Animation for elements coming into view */
-@media (prefers-reduced-motion: no-preference) {
-    .contact-method {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 0.6s ease forwards;
+    .chart-container {
+        padding: 1rem 0.5rem;
     }
-    
-    .contact-method:nth-child(1) { animation-delay: 0.1s; }
-    .contact-method:nth-child(2) { animation-delay: 0.2s; }
-    .contact-method:nth-child(3) { animation-delay: 0.3s; }
-    
-    .whatsapp-button {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.6s ease 0.4s forwards;
+    .data-table th, .data-table td {
+        padding: 0.7rem 0.7rem;
     }
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Focus states for accessibility */
-.whatsapp-button:focus,
-.contact-btn:focus {
-    outline: 2px solid var(--primary-green);
-    outline-offset: 2px;
-}
-
-.contact-method:focus-within {
-    outline: 2px solid var(--primary-green);
-    outline-offset: 2px;
 }
 
 /* --- Footer --- */

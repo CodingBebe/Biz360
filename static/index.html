@@ -7,6 +7,9 @@
     <title>Biz360 - Business Simplified</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="charts.js" defer></script>
    
 </head>
 <body>
@@ -22,9 +25,9 @@
         </div>
     </nav>
 
-    <!-- --- Banner Section --- -->
-    <header class="banner">
-        <div class="banner-content">
+    <!-- --- Hero Section --- -->
+    <header class="hero">
+        <div class="hero-content">
             <h1>Simplify Your Business. Reclaim Your Time.</h1>
             <p>Your tool for sales record keeping.</p>
             <a href="#main-dashboard" class="cta-button">
@@ -34,15 +37,15 @@
     </header>
 
     <!-- --- Main Section --- -->
-    <main class="main-content" id="main-dashboard">
-        <!--Tabs-->
- <div class="tabs">
-             <button class="tab-button active" onclick="showTab('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</button>
-             <button class="tab-button" onclick="showTab('sales')"><i class="fas fa-cash-register"></i> Sales Register</button>
-             <button class="tab-button" onclick="showTab('tax')"><i class="fas fa-receipt"></i> Tax Helper</button>
-           
-             <!--dashboard tab-->
-            <div id="dashboard" class="tab-content active">
+    <main class="main-content" id="main-dashboard" style="margin-top: 90px;">
+        <!-- Tabs (now inside main-content, above tab contents) -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('dashboard')"><i class="fas fa-chart-pie"></i> Dashboard</button>
+            <button class="tab-button" onclick="showTab('sales')"><i class="fas fa-cash-register"></i> Sales Register</button>
+            <button class="tab-button" onclick="showTab('tax')"><i class="fas fa-receipt"></i> Tax Helper</button>
+        </div>
+        <!-- Tab contents as siblings -->
+        <div id="dashboard" class="tab-content active">
             <div class="section-header"><i class="fas fa-chart-pie"></i><h2>Business Dashboard</h2></div>
             <div class="dashboard-grid">
                 <div class="dashboard-card"><div class="icon"><i class="fas fa-cash-register"></i></div><div class="info"><h3 id="weekly-sales">TSh 0</h3><p>Sales This Week</p></div></div>
@@ -108,7 +111,6 @@
     </div>
 </div>
 
-</div>
     </main>
 
     <!-- --- Footer --- -->
@@ -133,9 +135,7 @@
             </footer>
 
     <!--my sripts -->
-    <script src="script.js"></script>
-    <script src="charts.js" defer></script>
-    <script>
+       <script>
         $(document).ready(function() {
             // scrolling
             $('.nav-links a, .cta-button').on('click', function(e) {

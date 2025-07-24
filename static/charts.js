@@ -72,3 +72,78 @@ function setupSalesByProductChart(sales = []) {
         options: { ...commonChartOptions, indexAxis: 'y', scales: { x: { beginAtZero: true } } }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Example data, replace with your real data from backend if needed
+    const salesOverTimeLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const salesOverTimeData = [120000, 90000, 150000, 80000, 170000, 110000, 130000];
+
+    const salesByProductLabels = ['Rice', 'Beans', 'Oil', 'Sugar', 'Salt'];
+    const salesByProductData = [50, 30, 20, 15, 10];
+
+    // Sales Over Time Chart
+    const salesOverTimeCtx = document.getElementById('salesOverTimeChart');
+    if (salesOverTimeCtx) {
+        new Chart(salesOverTimeCtx, {
+            type: 'line',
+            data: {
+                labels: salesOverTimeLabels,
+                datasets: [{
+                    label: 'Sales (TSh)',
+                    data: salesOverTimeData,
+                    borderColor: '#006747',
+                    backgroundColor: 'rgba(0, 103, 71, 0.08)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#006747'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return 'TSh ' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Sales By Product Chart
+    const salesByProductCtx = document.getElementById('salesByProductChart');
+    if (salesByProductCtx) {
+        new Chart(salesByProductCtx, {
+            type: 'bar',
+            data: {
+                labels: salesByProductLabels,
+                datasets: [{
+                    label: 'Quantity Sold',
+                    data: salesByProductData,
+                    backgroundColor: [
+                        '#006747', '#388E3C', '#FFA500', '#1976D2', '#D32F2F'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+});
